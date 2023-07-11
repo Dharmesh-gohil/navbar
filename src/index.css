@@ -297,11 +297,8 @@ nav{
   }
   /* links height 160 px means 10rem 1rem=16px */
   .links-container{
-    height: 0;
+    /* height: 0; */
     overflow: hidden;
     transition: var(--transition);
   }
-  .show-container{
-    height: 160px; 
-    /* or use height :10rem; */
-  }
+  

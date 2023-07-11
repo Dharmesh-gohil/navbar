@@ -1,15 +1,29 @@
-import { useState } from "react"
+import { useState,useRef } from "react"
 import { links, social } from "./data"
 import { FaBars } from "react-icons/fa"
 import logo from "./logo.svg"
 
 const Navbar = () => {
     const [showLinks, setShowLinks] = useState(false)
+    const linksRef = useRef(null)
+    const linksContainerRef=useRef(null)
     
     //use this function in button as refrence or set direct arrow function in it what we used
-    // const toggleLinks = () => { 
-    //     setShowLinks(!showLinks)
+    
+    const toggleLinks = () => { 
+        setShowLinks(!showLinks)
+    }
+
+    const linkStyles = {height:showLinks ? `${linksRef.current.getBoundingClientRect().height}px` : '0px'}
+    //  const linkStyles = {
+    //      height:showLinks 
+    // ? `${linksRef.current.getBoundingClientRect().height}px`: '0px'
     // }
+//     const linkStyles = {
+//     height: showLinks
+//       ? `${linksRef.current.getBoundingClientRect().height}px`
+//       : '0px',
+//   };
 
   return (
       <nav>
@@ -17,28 +31,16 @@ const Navbar = () => {
               <div className="nav-header">
                   <img src={logo} alt="logo" className="logo" />
                   <button className="nav-toggle"
-                      onClick={() => setShowLinks(!showLinks)}>
+                  onClick={toggleLinks}>
                       <FaBars />
                   </button>
               </div>
-              {/* { showLinks && <div className="links-container">
-                  <ul className="links">
+              
+              <div className="links-container" ref={linksContainerRef} style={linkStyles}>
+                  <ul className="links" ref={linksRef} >
                       {links.map((link) => { 
                           const { id,text,url}=link
-                          return <li key={text}>
-                              <a href={ url}>{ text}</a>
-                          </li>
-                      })}
-                  </ul>
-              </div>}  or second approach is using css class adding this is static 
-              approach so when links value means any links added then it will not show 
-              in becoz we have set link height fixed to 160px or 10rem so we have to set 
-              dynamic approach*/}
-              <div className={ showLinks ? "links-container show-container":"links-container"}>
-                  <ul className="links">
-                      {links.map((link) => { 
-                          const { id,text,url}=link
-                          return <li key={text}>
+                          return <li key={id}>
                               <a href={ url}>{ text}</a>
                           </li>
                       })}
