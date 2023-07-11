@@ -312,7 +312,7 @@ display: none;
       padding: 0;
     }
     .nav-center{
-      border: 2px solid red;
+      /* border: 2px solid red; */
       max-width:1170px;
       margin: 0 auto;
       display: flex;
